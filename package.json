@@ -38,7 +38,11 @@
     "stylelint": "^13.13.1"
   },
   "scripts": {
-    "test": "stylelint 'styles/**/*.css'",
-    "start": "browser-sync start --server --no-notify --no-ui --no-ghost-mode --files 'fonts/*,pictures/*,styles/**,index.html'"
+    "pdf": "shower pdf",
+    "start": "shower serve",
+    "prepare": "shower prepare --files '**' --files '!{docs,node_modules,prepared}{,/**}' --files '!*.{md,toml,json}'",
+    "archive": "shower archive --files '**' --files '!{docs,node_modules,prepared}{,/**}' --files '!*.{md,toml,json}'",
+    "publish": "shower publish --files '**' --files '!{docs,node_modules,prepared}{,/**}' --files '!*.{md,toml,json}'",
+    "test": "npm run prepare && ls prepared && npm run archive && path-exists presentation.zip"
   }
 }
